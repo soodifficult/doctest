@@ -2,28 +2,28 @@
 Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷的数据采集、数据处理和数据上云功能，支持ISO on TCP、ModbusRTU等多种工业协议解析。
 本手册以采集PLC的数据并上传至Thingsboard云平台为例说明如何通过Device Supervisor App实现PLC数据采集和数据上云。以下将InGateway501简称为“IG501”；InGateway902简称为“IG902”。
 
-  - [概览](#概览)
+  - [概览](#overview)
   - [1.准备硬件设备及其数据采集环境](#prepare-hardware-equipment-and-its-data-collection-environment)
-    - [1.1 硬件接线](#硬件接线)
-      - [1.1.1 以太网接线](#以太网接线)
-      - [1.1.2 串口接线](#串口接线)
-    - [1.2 设置LAN网络参数：在局域网访问PLC](#设置LAN网络参数)
-    - [1.3 设置WAN网络参数：传输数据至MQTT服务器](#设置WAN网络参数)
-    - [1.4 更新InGateway设备软件版本](#更新InGateway设备软件版本)
-  - [2.配置Device Supervisor App](#配置device_supervisor_app)
-    - [2.1 安装并运行Device Supervisor](#安装并运行device_supervisor)
-    - [2.2 Device Supervisor数据采集配置](#device_supervisor数据采集配置)
-      - [2.2.1 添加PLC设备](#添加plc设备)
-      - [2.2.2 添加变量](#添加变量)
-      - [2.2.3 配置告警策略](#配置告警策略)
-      - [2.2.4 配置分组](#配置分组)
-  - [3.监控PLC数据](#监控plc数据)
-    - [3.1 本地监控PLC数据](#本地监控plc数据)
-      - [3.1.1 本地监控数据采集](#本地监控数据采集)
-      - [3.1.2 本地监控告警](#本地监控告警)
-    - [3.2 在Thingsboard上监控PLC数据](#在thingsboard上监控plc数据)
-      - [3.2.1 配置Thingsboard](#配置thingsboard)
-      - [3.2.2 配置云服务](#配置云服务)
+    - [1.1 硬件接线](#hardware-wiring)
+      - [1.1.1 以太网接线](#ethernet-wiring)
+      - [1.1.2 串口接线](#serial-wiring)
+    - [1.2 设置LAN网络参数：在局域网访问PLC](#set-lan-network-parameters)
+    - [1.3 设置WAN网络参数：传输数据至MQTT服务器](#set-wan-network-parameters)
+    - [1.4 更新InGateway设备软件版本](#update-ingateway-device-software-version)
+  - [2.配置Device Supervisor App](#configuration_device_supervisor_app)
+    - [2.1 安装并运行Device Supervisor](#install_and_run_device_supervisor)
+    - [2.2 Device Supervisor数据采集配置](#device_supervisor-data-acquisition-configuration)
+      - [2.2.1 添加PLC设备](#add-plc-device)
+      - [2.2.2 添加变量](#add-variables)
+      - [2.2.3 配置告警策略](#configure-alarm-strategy)
+      - [2.2.4 配置分组](#configure-group)
+  - [3.监控PLC数据](#monitor-plc-data)
+    - [3.1 本地监控PLC数据](#local-monitor-plc-data)
+      - [3.1.1 本地监控数据采集](#local-monitoring-data-collection)
+      - [3.1.2 本地监控告警](#local-monitoring-alarm)
+    - [3.2 在Thingsboard上监控PLC数据](#monitor-plc-data-on-thingsboard)
+      - [3.2.1 配置Thingsboard](#configure-thingsboard)
+      - [3.2.2 配置云服务](#configure-cloud-service)
   - [附录](#附录)
     - [导入导出配置](#导入导出配置)
     - [高级设置（自定义MQTT发布/订阅）](#高级设置自定义mqtt发布订阅)
@@ -39,7 +39,7 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
       - [配置可视化仪表板](#配置可视化仪表板)
   - [FAQ](#faq)
 
-<a id="概览"> </a>  
+<a id="overview"> </a>  
 
 ## 概览
 使用过程中，您需要准备以下项：  
@@ -61,16 +61,16 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
 
 ## 1.准备硬件设备及其数据采集环境
 
-  - [1.1 硬件接线](#硬件接线)
-  - [1.2 设置LAN网络参数：在局域网访问PLC](#设置LAN网络参数)
-  - [1.3 设置WAN网络参数：传输数据至MQTT服务器](#设置WAN网络参数)
-  - [1.4 更新InGateway设备软件版本](#更新InGateway设备软件版本)
+  - [1.1 硬件接线](#hardware-wiring)
+  - [1.2 设置LAN网络参数：在局域网访问PLC](#set-lan-network-parameters)
+  - [1.3 设置WAN网络参数：传输数据至MQTT服务器](#set-wan-network-parameters)
+  - [1.4 更新InGateway设备软件版本](#update-ingateway-device-software-version)
 
-<a id="硬件接线"> </a>  
+<a id="hardware-wiring"> </a>  
 
 ### 1.1 硬件接线
 
-<a id="以太网接线"> </a>  
+<a id="ethernet-wiring"> </a>  
 
 #### 1.1.1 以太网接线
 - IG902以太网接线  
@@ -84,7 +84,7 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
 
   ![](images/2020-03-12-14-03-03.png)  
 
-<a id="串口接线"> </a>  
+<a id="serial-wiring"> </a>  
 
 #### 1.1.2 串口接线
 - IG902串口接线  
@@ -107,19 +107,19 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
   
   ![](images/2020-03-11-11-38-45.png)
  
-<a id="设置LAN网络参数"> </a>  
+<a id="set-lan-network-parameters"> </a>  
 
 ### 1.2 设置LAN网络参数：在局域网访问PLC
 - IG902的GE 0/2口的默认IP地址为`192.168.2.1`。为了使IG902能够通过GE 0/2口访问以太网PLC，需要设置GE 0/2口与PLC处于同一网段，设置方法请参考[在局域网访问IG902](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG902%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#lan-ig902)。
 - IG501的FE 0/1口的默认IP地址为`192.168.1.1`。为了使IG501能够通过FE 0/1口访问以太网PLC，需要设置FE 0/1口与PLC处于同一网段，设置方法请参考[在局域网访问IG501](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#lan-ig501)。
 
-<a id="设置WAN网络参数"> </a>  
+<a id="set-wan-network-parameters"> </a>  
 
 ### 1.3 设置WAN网络参数：传输数据至MQTT服务器
 - 设置IG902 WAN网络参数，请参考[IG902连接Internet](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG902%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#wan-internet)。
 - 设置IG501 WAN网络参数，请参考[IG501连接Internet](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#wan-internet)。
 
-<a id="更新InGateway设备软件版本"> </a>  
+<a id="update-ingateway-device-software-version"> </a>  
 
 ### 1.4 更新InGateway设备软件版本
 如需获取InGateway产品最新软件版本及其功能特性信息，请联系客服。如需更新软件版本，请参考如下链接：
@@ -127,15 +127,15 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
   使用Device Supervisor时，IG902的固件版本应为`V2.0.0.r12537`及以上；SDK版本应为`py3sdk-V1.3.5`及以上。
 - [更新IG501软件版本](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#id1)
 
-<a id="配置device_supervisor_app"> </a>  
+<a id="configuration_device_supervisor_app"> </a>  
 
 ## 2.配置Device Supervisor App
 
-  - [2.1 安装并运行Device Supervisor](#安装并运行device_supervisor)
-  - [2.2 Device Supervisor数据采集配置](#device_supervisor数据采集配置)
+  - [2.1 安装并运行Device Supervisor](#install_and_run_device_supervisor)
+  - [2.2 Device Supervisor数据采集配置](#device_supervisor-data-acquisition-configuration)
 
 
-<a id="安装并运行device_supervisor"> </a>  
+<a id="install_and_run_device_supervisor"> </a>  
 
 ### 2.1 安装并运行Device Supervisor
 - IG902如何安装并运行Python App请参考[IG902安装和运行Python App](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG902%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#python-app)，Device Supervisor正常运行后如下图所示：  
@@ -146,16 +146,16 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
   
   ![](images/2020-05-21-20-00-38.png)  
 
-<a id="device_supervisor数据采集配置"> </a>  
+<a id="device_supervisor-data-acquisition-configuration"> </a>  
 
 ### 2.2 Device Supervisor数据采集配置
 
-  - [2.2.1 添加PLC设备](#添加plc设备)
-  - [2.2.2 添加变量](#添加变量)
-  - [2.2.3 配置告警策略](#配置告警策略)
-  - [2.2.4 配置分组](#配置分组)
+  - [2.2.1 添加PLC设备](#add-plc-device)
+  - [2.2.2 添加变量](#add-variables)
+  - [2.2.3 配置告警策略](#configure-alarm-strategy)
+  - [2.2.4 配置分组](#configure-group)
 
-<a id="添加plc设备"> </a>  
+<a id="add-plc-device"> </a>  
 
 #### 2.2.1 添加PLC设备
 - 添加ISO on TCP通讯的PLC设备  
@@ -198,7 +198,7 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
 
   ![](images/2020-05-20-17-36-53.png)
 
-<a id="添加变量"> </a>  
+<a id="add-variables"> </a>  
 
 #### 2.2.2 添加变量
 - 添加ISO on TCP变量  
@@ -298,7 +298,7 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
   
   ![](images/2020-05-20-18-00-34.png)
 
-<a id="配置告警策略"> </a>
+<a id="configure-alarm-strategy"> </a>
 
 #### 2.2.3 配置告警策略
 
@@ -340,7 +340,7 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
 
   ![](images/2020-05-12-18-27-57.png)  
 
-<a id="配置分组"> </a>  
+<a id="configure-group"> </a>  
 
 #### 2.2.4 配置分组
 如需为变量或告警配置不同的采集间隔或需要按照不同的MQTT主题上报相应的变量数据时，可在“边缘计算 > 设备监控 > 分组”页面添加新分组。  
@@ -371,21 +371,21 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
 
   ![](images/2020-05-12-18-52-58.png)  
   
-<a id="监控plc数据"> </a>  
+<a id="monitor-plc-data"> </a>  
 
 ## 3.监控PLC数据 
   
-  - [3.1 本地监控PLC数据](#本地监控plc数据)
-  - [3.2 在Thingsboard上监控PLC数据](#在thingsboard上监控plc数据)
+  - [3.1 本地监控PLC数据](#local-monitor-plc-data)
+  - [3.2 在Thingsboard上监控PLC数据](#monitor-plc-data-on-thingsboard)
 
-<a id="本地监控plc数据"> </a>  
+<a id="local-monitor-plc-data"> </a>  
 
 ### 3.1 本地监控PLC数据
 
-  - [3.1.1 本地监控数据采集](#本地监控数据采集)
-  - [3.1.2 本地监控告警](#本地监控告警)
+  - [3.1.1 本地监控数据采集](#local-monitoring-data-collection)
+  - [3.1.2 本地监控告警](#local-monitoring-alarm)
 
-<a id="本地监控数据采集"> </a>  
+<a id="local-monitoring-data-collection"> </a>  
 
 #### 3.1.1 本地监控数据采集
 数据采集配置完成后，可以在“边缘计算 > 设备监控 > 设备列表”页面查看数据采集情况。点击设备列表中的设备卡片可切换需要查看的PLC数据。  
@@ -402,7 +402,7 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
 
 ![](images/2020-05-20-18-11-46.png)
 
-<a id="本地监控告警"> </a>  
+<a id="local-monitoring-alarm"> </a>  
 
 #### 3.1.2 本地监控告警
 告警策略配置完成后，可以在“边缘计算 > 设备监控 > 告警”页面查看变量告警情况。
@@ -414,19 +414,19 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
   
   ![](images/2020-05-13-09-41-00.png)  
   
-<a id="在thingsboard上监控plc数据"> </a>  
+<a id="monitor-plc-data-on-thingsboard"> </a>  
 
 ### 3.2 在Thingsboard上监控PLC数据
 
-  - [3.2.1 配置Thingsboard](#配置thingsboard)
-  - [3.2.2 配置云服务](#配置云服务)
+  - [3.2.1 配置Thingsboard](#configure-thingsboard)
+  - [3.2.2 配置云服务](#configure-cloud-service)
 
-<a id="配置thingsboard"> </a>  
+<a id="configure-thingsboard"> </a>  
 
 #### 3.2.1 配置Thingsboard
 Thingsboard的详细使用方法请查看[Thingsboard入门手册](https://thingsboard.io/docs/getting-started-guides/helloworld/)，您也可以按照[Thingsboard参考流程](#thingsboard参考流程)进行测试。
 
-<a id="配置云服务"> </a>  
+<a id="configure-cloud-service"> </a>  
 
 #### 3.2.2 配置云服务
 进入“边缘计算 > 设备监控 > 云服务”页面，勾选启用云服务并配置相应的MQTT连接参数，配置完成后点击提交。
