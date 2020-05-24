@@ -3,33 +3,33 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
 本手册以采集PLC的数据并上传至Thingsboard云平台为例说明如何通过Device Supervisor App实现PLC数据采集和数据上云。以下将InGateway501简称为“IG501”；InGateway902简称为“IG902”。
 
   - [概览](#概览)
-  - [准备硬件设备及其数据采集环境](#1准备硬件设备及其数据采集环境)
-    - [硬件接线](#11-硬件接线)
-      - [以太网接线](#以太网接线)
-      - [串口接线](#串口接线)
-    - [设置LAN网络参数：在局域网访问PLC](#设置lan网络参数)
-    - [设置WAN网络参数：传输数据至MQTT服务器](#设置wan网络参数)
-    - [更新InGateway设备软件版本](#更新ingateway设备软件版本)
-  - [配置Device Supervisor App](#配置device-supervisor-app)
-    - [安装并运行Device Supervisor](#安装并运行device-supervisor)
-    - [Device Supervisor数据采集配置](#device-supervisor数据采集配置)
-      - [添加PLC设备](#添加plc设备)
-      - [添加变量](#添加变量)
-      - [配置告警策略](#配置告警策略)
-      - [配置分组](#配置分组)
-  - [监控PLC数据](#监控plc数据)
-    - [本地监控PLC数据](#本地监控plc数据)
-      - [本地监控数据采集](#本地监控数据采集)
-      - [本地监控告警](#本地监控告警)
-    - [在Thingsboard上监控PLC数据](#在thingsboard上监控plc数据)
-      - [配置Thingsboard](#配置thingsboard)
-      - [配置云服务](#配置云服务)
+  - [1.准备硬件设备及其数据采集环境](#prepare-hardware-equipment-and-its-data-collection-environment)
+    - [1.1 硬件接线](#硬件接线)
+      - [1.1.1 以太网接线](#以太网接线)
+      - [1.1.2 串口接线](#串口接线)
+    - [1.2 设置LAN网络参数：在局域网访问PLC](#设置LAN网络参数)
+    - [1.3 设置WAN网络参数：传输数据至MQTT服务器](#设置WAN网络参数)
+    - [1.4 更新InGateway设备软件版本](#更新InGateway设备软件版本)
+  - [2.配置Device Supervisor App](#配置device_supervisor_app)
+    - [2.1 安装并运行Device Supervisor](#安装并运行device_supervisor)
+    - [2.2 Device Supervisor数据采集配置](#device_supervisor数据采集配置)
+      - [2.2.1 添加PLC设备](#添加plc设备)
+      - [2.2.2 添加变量](#添加变量)
+      - [2.2.3 配置告警策略](#配置告警策略)
+      - [2.2.4 配置分组](#配置分组)
+  - [3.监控PLC数据](#监控plc数据)
+    - [3.1 本地监控PLC数据](#本地监控plc数据)
+      - [3.1.1 本地监控数据采集](#本地监控数据采集)
+      - [3.1.2 本地监控告警](#本地监控告警)
+    - [3.2 在Thingsboard上监控PLC数据](#在thingsboard上监控plc数据)
+      - [3.2.1 配置Thingsboard](#配置thingsboard)
+      - [3.2.2 配置云服务](#配置云服务)
   - [附录](#附录)
     - [导入导出配置](#导入导出配置)
     - [高级设置（自定义MQTT发布/订阅）](#高级设置自定义mqtt发布订阅)
       - [发布](#发布)
       - [订阅](#订阅)
-      - [Device Supervisor的api接口说明](#device-supervisor-api-description)
+      - [Device Supervisor的api接口说明](#device_supervisor_api_description)
       - [回调函数说明](#callback-function-description)
     - [全局参数](#全局参数)
     - [其他网关操作](#其他网关操作)
@@ -39,7 +39,7 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
       - [配置可视化仪表板](#配置可视化仪表板)
   - [FAQ](#faq)
 
-[id]: "概览"
+<a id="概览"> </a>  
 
 ## 概览
 使用过程中，您需要准备以下项：  
@@ -54,16 +54,17 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
 
 整体流程如下图所示：  
 
+
 ![](images/2020-05-18-18-08-55.png)
 
-[id]: "1准备硬件设备及其数据采集环境"
+<a id="prepare-hardware-equipment-and-its-data-collection-environment"> </a>  
 
 ## 1.准备硬件设备及其数据采集环境
 
   - [1.1 硬件接线](#硬件接线)
-  - [1.2 设置LAN网络参数：在局域网访问PLC](#设置lan网络参数)
-  - [1.3 设置WAN网络参数：传输数据至MQTT服务器](#设置wan网络参数)
-  - [1.4 更新InGateway设备软件版本](#更新ingateway设备软件版本)
+  - [1.2 设置LAN网络参数：在局域网访问PLC](#设置LAN网络参数)
+  - [1.3 设置WAN网络参数：传输数据至MQTT服务器](#设置WAN网络参数)
+  - [1.4 更新InGateway设备软件版本](#更新InGateway设备软件版本)
 
 <a id="硬件接线"> </a>  
 
@@ -106,19 +107,19 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
   
   ![](images/2020-03-11-11-38-45.png)
  
-<a id="设置lan网络参数"> </a>  
+<a id="设置LAN网络参数"> </a>  
 
 ### 1.2 设置LAN网络参数：在局域网访问PLC
 - IG902的GE 0/2口的默认IP地址为`192.168.2.1`。为了使IG902能够通过GE 0/2口访问以太网PLC，需要设置GE 0/2口与PLC处于同一网段，设置方法请参考[在局域网访问IG902](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG902%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#lan-ig902)。
 - IG501的FE 0/1口的默认IP地址为`192.168.1.1`。为了使IG501能够通过FE 0/1口访问以太网PLC，需要设置FE 0/1口与PLC处于同一网段，设置方法请参考[在局域网访问IG501](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#lan-ig501)。
 
-<a id="设置wan网络参数"> </a>  
+<a id="设置WAN网络参数"> </a>  
 
 ### 1.3 设置WAN网络参数：传输数据至MQTT服务器
 - 设置IG902 WAN网络参数，请参考[IG902连接Internet](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG902%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#wan-internet)。
 - 设置IG501 WAN网络参数，请参考[IG501连接Internet](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#wan-internet)。
 
-<a id="更新ingateway设备软件版本"> </a>  
+<a id="更新InGateway设备软件版本"> </a>  
 
 ### 1.4 更新InGateway设备软件版本
 如需获取InGateway产品最新软件版本及其功能特性信息，请联系客服。如需更新软件版本，请参考如下链接：
@@ -126,15 +127,15 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
   使用Device Supervisor时，IG902的固件版本应为`V2.0.0.r12537`及以上；SDK版本应为`py3sdk-V1.3.5`及以上。
 - [更新IG501软件版本](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#id1)
 
-<a id="配置device-supervisor-app"> </a>  
+<a id="配置device_supervisor_app"> </a>  
 
 ## 2.配置Device Supervisor App
 
-  - [2.1 安装并运行Device Supervisor](#安装并运行device-supervisor)
-  - [2.2 Device Supervisor数据采集配置](#device-supervisor数据采集配置)
+  - [2.1 安装并运行Device Supervisor](#安装并运行device_supervisor)
+  - [2.2 Device Supervisor数据采集配置](#device_supervisor数据采集配置)
 
 
-<a id="安装并运行device-supervisor"> </a>  
+<a id="安装并运行device_supervisor"> </a>  
 
 ### 2.1 安装并运行Device Supervisor
 - IG902如何安装并运行Python App请参考[IG902安装和运行Python App](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG902%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#python-app)，Device Supervisor正常运行后如下图所示：  
@@ -145,7 +146,7 @@ Device Supervisor App（以下简称Device Supervisor）为用户提供了便捷
   
   ![](images/2020-05-21-20-00-38.png)  
 
-<a id="device-supervisor数据采集配置"> </a>  
+<a id="device_supervisor数据采集配置"> </a>  
 
 ### 2.2 Device Supervisor数据采集配置
 
@@ -573,7 +574,7 @@ Device Supervisor的数据采集配置总共包含三个CSV格式的配置文件
 
   - [发布](#发布)
   - [订阅](#订阅)
-  - [Device Supervisor的api接口说明](#device-supervisor-api-description)
+  - [Device Supervisor的api接口说明](#device_supervisor_api_description)
   - [回调函数说明](#callback-function-description)
 
 <a id="发布"> </a>  
@@ -635,7 +636,7 @@ Device Supervisor的数据采集配置总共包含三个CSV格式的配置文件
       }
       ```  
 
-  - `参数2`：该参数为Device Supervisor提供的api接口，参数说明见[Device Supervisor的api接口说明](#device-supervisor-api-description)  
+  - `参数2`：该参数为Device Supervisor提供的api接口，参数说明见[Device Supervisor的api接口说明](#device_supervisor_api_description)  
 
 以下是常见的自定义发布方法示例<font color=#FF0000>（请勿将`mqtt_publish`或`save_data`方法与`return`命令同时使用）</font>：
 
@@ -944,7 +945,7 @@ Device Supervisor的数据采集配置总共包含三个CSV格式的配置文件
 - `脚本`：使用Python代码自定义组包和处理逻辑，订阅中的主函数参数包括：
   - `参数1`：该参数为接收到的主题，数据类型为`string`
   - `参数2`：该参数为接收到的数据，数据类型为`string`
-  - `参数3`：该参数为Device Supervisor提供的api接口，参数说明见[Device Supervisor的api接口说明](#device-supervisor-api-description)  
+  - `参数3`：该参数为Device Supervisor提供的api接口，参数说明见[Device Supervisor的api接口说明](#device_supervisor_api_description)  
 
 以下是三个常见的自定义订阅方法示例：
 
@@ -1064,7 +1065,7 @@ Device Supervisor的数据采集配置总共包含三个CSV格式的配置文件
       wizard_api.mqtt_publish("v1/xxx/yyy", json.dumps(value_list), 1) #调用wizard_api模块中的mqtt_publish方法将value_list数据通过主题“v1/xxx/yyy”，qos等级1发送至MQTT服务器
   ```
 
-<a id="device-supervisor-api-description"> </a>  
+<a id="device_supervisor_api_description"> </a>  
 
 #### Device Supervisor的api接口说明
 Device Supervisor提供的api接口，包含以下方法：
@@ -1158,7 +1159,7 @@ Device Supervisor提供的api接口，包含以下方法：
         }]
         ```
     - `参数2`：`write_plc_values`方法中配置的`参数3`，如果未在`write_plc_values`中配置`参数3`，则该参数为`None`
-    - `参数3`：该参数为Device Supervisor提供的api接口，参数说明见[Device Supervisor的api接口说明](#device-supervisor-api-description)  
+    - `参数3`：该参数为Device Supervisor提供的api接口，参数说明见[Device Supervisor的api接口说明](#device_supervisor_api_description)  
 
 <a id="get-tag-config-callback-function-description"> </a>  
 
@@ -1257,7 +1258,7 @@ Device Supervisor提供的api接口，包含以下方法：
       ```
 
     - `参数2`：`get_tag_config`方法中配置的`参数3`，如果未在`get_tag_config`中配置`参数3`，则该参数为`None`
-    - `参数3`：该参数为Device Supervisor提供的api接口，参数说明见[Device Supervisor的api接口说明](#device-supervisor-api-description)  
+    - `参数3`：该参数为Device Supervisor提供的api接口，参数说明见[Device Supervisor的api接口说明](#device_supervisor_api_description)  
 
 <a id="recall-data-callback-function-description"> </a>  
 
@@ -1288,7 +1289,7 @@ Device Supervisor提供的api接口，包含以下方法：
 
     - `参数2`：`recall_data`方法中配置的`参数3`，如果未在`recall_data`中配置`参数3`，则该参数为`None`
 
-    - `参数3`：该参数为Device Supervisor提供的api接口，参数说明见[Device Supervisor的api接口说明](#device-supervisor-api-description)   
+    - `参数3`：该参数为Device Supervisor提供的api接口，参数说明见[Device Supervisor的api接口说明](#device_supervisor_api_description)   
 
 <a id="全局参数"> </a>  
 
