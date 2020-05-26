@@ -14,7 +14,7 @@ The InGateway series of Beijing InHand Networks Technology Co., Ltd. (InHand) co
       - [1.2.2 Install Visual Studio Code](#install-visual-studio-code)
       - [1.2.3 Install OpenSSH](#install-openssh)
     - [1.3 Prepare the VS Code development environment](#prepare-the-vs-code-development-environment)
-      - [1.3.1 Install the VS Code extension](#1install-the-vs-code-extension)
+      - [1.3.1 Install the VS Code extension](#install-the-vs-code-extension)
       - [1.3.2 Configure the Python interpreter version](#configure-the-python-interpreter-version)
       - [1.3.3 Configure the project template](#configure-the-project-template)
         - [1.3.3.1 Apply the InHand standard project template](#apply-the-inhand-standard-project-template)
@@ -60,7 +60,7 @@ Before starting development, ensure that you get the following items ready:
 
 If your MobiusPi and PC have met all the above items, skip this section. Otherwise, prepare a development environment as follows.
 
-- [1.1 Prepare the hardware and network environment](#build-a-mobiuspi-development-environment)
+- [1.1 Prepare the hardware and network environment](#prepare-the-hardware-and-network-environment)
 - [1.2 Install required software on the PC](#install-required-software-on-the-pc)
 - [1.3 Prepare the VS Code development environment](#prepare-the-vs-code-development-environment)
 
@@ -164,7 +164,7 @@ If the PC does not support the SSH protocol, download OpenSSH from [https://www.
 
 ### 1.3 Prepare the VS Code development environment
 
-- [1.3.1 Install the VS Code extension](#1install-the-vs-code-extension)
+- [1.3.1 Install the VS Code extension](#install-the-vs-code-extension)
 - [1.3.2 Configure the Python interpreter version](#configure-the-python-interpreter-version)
 - [1.3.3 Configure the project template](#configure-the-project-template)
   - [1.3.3.1 Apply the InHand standard project template](#apply-the-inhand-standard-project-template)
@@ -504,7 +504,7 @@ To install a third-party dependency library for the specified App, you need to e
 
 ![](images/2020-02-14-10-21-15.png)
 
-- Step 1: Use VS Code to connect to MobiusPi over SFTP. For more information, see [Create an SFTP connection](https://readts.readthedocs.io/en/latest/QuickStart.html#sftp).
+- Step 1: Use VS Code to connect to MobiusPi over SFTP. For more information, see [Create an SFTP connection](#create-an-sftp-connection).
   
   ![](images/2020-01-03-11-07-08.png)
 
@@ -545,7 +545,7 @@ To install a third-party dependency library to SDK, you need to enable the debug
 
 ![](images/2020-02-14-10-21-15.png)
 
-- Step 1: Use VS Code to connect to MobiusPi over SFTP. For more information, see [Create an SFTP connection](https://readts.readthedocs.io/en/latest/QuickStart.html#sftp).
+- Step 1: Use VS Code to connect to MobiusPi over SFTP. For more information, see [Create an SFTP connection](#create-an-sftp-connection).
   
   ![](./images/2019-12-06-16-41-02.png)
 
