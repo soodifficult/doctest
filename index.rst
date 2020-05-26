@@ -11,3 +11,4 @@
    :caption: 快速入门
 
    PLC Supervisor用户手册.md
+   MobiusPi Python QuickStart.md
