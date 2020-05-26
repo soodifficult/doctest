@@ -2,60 +2,40 @@
 
 The InGateway series of Beijing InHand Networks Technology Co., Ltd. (InHand) consists of InGateway902 (referred to as **IG902** hereinafter) and InGateway501 (referred to as **IG501** hereinafter).  </br> MobiusPi is a secondary development platform for the InGateway series. This document describes how to perform Python-based secondary development on MobiusPi.
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [**Quick Start for MobiusPi Python Development**](#quick-start-for-mobiuspi-python-development)
-  - [1. Build a MobiusPi development environment](#1-build-a-mobiuspi-development-environment)
-    - [1.1 Prepare the hardware and network environment](#11-prepare-the-hardware-and-network-environment)
-      - [1.1.1 Connect the power supply and use a network cable to connect the platform to the PC](#111-connect-the-power-supply-and-use-a-network-cable-to-connect-the-platform-to-the-pc)
-      - [1.1.2 Configure the LAN parameters](#112-configure-the-lan-parameters)
-      - [1.1.3 Configure the WAN parameters](#113-configure-the-wan-parameters)
-      - [1.1.4 Update the software version](#114-update-the-software-version)
-      - [1.1.5 Enable the debugging mode for MobiusPi](#115-enable-the-debugging-mode-for-mobiuspi)
-    - [1.2 Install required software on the PC](#12-install-required-software-on-the-pc)
-      - [1.2.1 Install the Python interpreter](#121-install-the-python-interpreter)
-      - [1.2.2 Install Visual Studio Code](#122-install-visual-studio-code)
-      - [1.2.3 Install OpenSSH](#123-install-openssh)
-    - [1.3 Prepare the VS Code development environment](#13-prepare-the-vs-code-development-environment)
-      - [1.3.1 Install the VS Code extension](#131-install-the-vs-code-extension)
-      - [1.3.2 Configure the Python interpreter version](#132-configure-the-python-interpreter-version)
-      - [1.3.3 Configure the project template](#133-configure-the-project-template)
-        - [1.3.3.1 Apply the InHand standard project template](#1331-apply-the-inhand-standard-project-template)
-        - [1.3.3.2 Custom project template](#1332-custom-project-template)
-  - [2. Compile the first MobiusPi App: Hello World](#2-compile-the-first-mobiuspi-app-hello-world)
-    - [2.1 Use a template to create a project](#21-use-a-template-to-create-a-project)
-    - [2.2 Encoding](#22-encoding)
-    - [2.3 Debugging](#23-debugging)
-      - [2.3.1 Create an SFTP connection](#231-create-an-sftp-connection)
-      - [2.3.2 Debug the code](#232-debug-the-code)
-    - [2.4 Build an App release package](#24-build-an-app-release-package)
-    - [2.5 Deploy the App on the MobiusPi web page](#25-deploy-the-app-on-the-mobiuspi-web-page)
-    - [2.6 View the App running status](#26-view-the-app-running-status)
-    - [2.7 Update the App configuration file](#27-update-the-app-configuration-file)
-    - [2.8 Annex](#28-annex)
-      - [2.8.1 Install a third-party dependency library for the specified App](#281-install-a-third-party-dependency-library-for-the-specified-app)
-      - [2.8.2 Install the third-party dependency library to SDK](#282-install-the-third-party-dependency-library-to-sdk)
-      - [2.8.3 Enable automatic code completion](#283-enable-automatic-code-completion)
+  - [1. Build a MobiusPi development environment](#build-a-mobiuspi-development-environment)
+    - [1.1 Prepare the hardware and network environment](#prepare-the-hardware-and-network-environment)
+      - [1.1.1 Connect the power supply and use a network cable to connect the platform to the PC](#connect-the-power-supply-and-use-a-network-cable-to-connect-the-platform-to-the-pc)
+      - [1.1.2 Configure the LAN parameters](#configure-the-lan-parameters)
+      - [1.1.3 Configure the WAN parameters](#configure-the-wan-parameters)
+      - [1.1.4 Update the software version](#update-the-software-version)
+      - [1.1.5 Enable the debugging mode for MobiusPi](#enable-the-debugging-mode-for-mobiuspi)
+    - [1.2 Install required software on the PC](#install-required-software-on-the-pc)
+      - [1.2.1 Install the Python interpreter](#install-the-python-interpreter)
+      - [1.2.2 Install Visual Studio Code](#install-visual-studio-code)
+      - [1.2.3 Install OpenSSH](#install-openssh)
+    - [1.3 Prepare the VS Code development environment](#prepare-the-vs-code-development-environment)
+      - [1.3.1 Install the VS Code extension](#1install-the-vs-code-extension)
+      - [1.3.2 Configure the Python interpreter version](#configure-the-python-interpreter-version)
+      - [1.3.3 Configure the project template](#configure-the-project-template)
+        - [1.3.3.1 Apply the InHand standard project template](#apply-the-inhand-standard-project-template)
+        - [1.3.3.2 Custom project template](#custom-project-template)
+  - [2. Compile the first MobiusPi App: Hello World](#compile-the-first-mobiuspi-app-hello-world)
+    - [2.1 Use a template to create a project](#use-a-template-to-create-a-project)
+    - [2.2 Encoding](#encoding)
+    - [2.3 Debugging](#debugging)
+      - [2.3.1 Create an SFTP connection](#create-an-sftp-connection)
+      - [2.3.2 Debug the code](#debug-the-code)
+    - [2.4 Build an App release package](#build-an-app-release-package)
+    - [2.5 Deploy the App on the MobiusPi web page](#deploy-the-app-on-the-mobiuspi-web-page)
+    - [2.6 View the App running status](#view-the-app-running-status)
+    - [2.7 Update the App configuration file](#update-the-app-configuration-file)
+    - [2.8 Annex](#annex)
+      - [2.8.1 Install a third-party dependency library for the specified App](#install-a-third-party-dependency-library-for-the-specified-app)
+      - [2.8.2 Install the third-party dependency library to SDK](#install-the-third-party-dependency-library-to-sdk)
+      - [2.8.3 Enable automatic code completion](#enable-automatic-code-completion)
   - [FAQ](#faq)
 
-<!-- /code_chunk_output -->
-
-- [1. Build a MobiusPi development environment](#1-build-a-mobiuspi-development-environment)
-  - [1.1 Prepare the hardware and network environment](#11-准备硬件设备及其网络环境)
-  - [1.2 Install required software on the PC](#12-安装pc上需要的软件)
-  - [1.3 Prepare the VS Code development environment](#13-准备vs-code开发环境)
-- [2. Compile the first MobiusPi App: Hello World](#2-编写第一个mobiuspi-apphello-world)
-  - [2.1 Use a template to create a project](#21-使用模板创建工程)
-  - [2.2 Encoding](#22-编码)
-  - [2.3 Debugging](#23-调试)
-  - [2.4 Build an App release package](#24-构建app发布包)
-  - [2.5 Deploy the App on the MobiusPi web page](#25-通过mobiuspi-web页面部署app)
-  - [2.6 View the App running status](#26-查看app运行状态)
-  - [2.7 Update the App configuration file](#27-为app更新配置文件)
-  - [2.8 Annex](#28-附录)
-- [FAQ](#faq)
+<a id="build-a-mobiuspi-development-environment"> </a>  
 
 ## 1. Build a MobiusPi development environment
 
@@ -80,17 +60,21 @@ Before starting development, ensure that you get the following items ready:
 
 If your MobiusPi and PC have met all the above items, skip this section. Otherwise, prepare a development environment as follows.
 
-- [1.1 Prepare the hardware and network environment](#11-准备硬件设备及其网络环境)
-- [1.2 Install required software on the PC](#12-安装pc上需要的软件)
-- [1.3 Prepare the VS Code development environment](#13-准备vs-code开发环境)
+- [1.1 Prepare the hardware and network environment](#build-a-mobiuspi-development-environment)
+- [1.2 Install required software on the PC](#install-required-software-on-the-pc)
+- [1.3 Prepare the VS Code development environment](#prepare-the-vs-code-development-environment)
+
+<a id="prepare-the-hardware-and-network-environment"> </a>  
 
 ### 1.1 Prepare the hardware and network environment
 
-- [1.1.1 Connect the power supply and use a network cable to connect the platform to the PC](#111-接通电源并使用网线连接pc)
-- [1.1.2 Configure the LAN parameters](#112-设置lan网络参数)
-- [1.1.3 Configure the WAN parameters](#113-设置wan网络参数)
-- [1.1.4 Update the software version](#114-更新软件版本)
-- [1.1.5 Enable the debugging mode for MobiusPi](#115-启用mobiuspi的调试模式)
+- [1.1.1 Connect the power supply and use a network cable to connect the platform to the PC](#connect-the-power-supply-and-use-a-network-cable-to-connect-the-platform-to-the-pc)
+- [1.1.2 Configure the LAN parameters](#configure-the-lan-parameters)
+- [1.1.3 Configure the WAN parameters](#configure-the-wan-parameters)
+- [1.1.4 Update the software version](#update-the-software-version)
+- [1.1.5 Enable the debugging mode for MobiusPi](#enable-the-debugging-mode-for-mobiuspi)
+
+<a id="connect-the-power-supply-and-use-a-network-cable-to-connect-the-platform-to-the-pc"> </a>  
 
 #### 1.1.1 Connect the power supply and use a network cable to connect the platform to the PC
 
@@ -106,15 +90,21 @@ If your MobiusPi and PC have met all the above items, skip this section. Otherwi
   
   ![](images/2020-02-20-16-11-49.png)
 
+<a id="configure-the-lan-parameters"> </a>  
+
 #### 1.1.2 Configure the LAN parameters
 
 - Configure the IG501 LAN parameters by referring to [Access IG501 in a LAN](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#lan-ig501).
 - Configure the IG902 LAN parameters by referring to [Access IG902 in a LAN](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG902%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#lan-ig902).
 
+<a id="configure-the-wan-parameters"> </a>  
+
 #### 1.1.3 Configure the WAN parameters
 
 - Configure the IG501 WAN parameters by referring to [Connect IG501 to the Internet](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#wan-internet).
 - Configure the IG902 WAN parameters by referring to [Connect IG902 to the Internet](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG902%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#wan-internet).
+
+<a id="update-the-software-version"> </a>  
 
 #### 1.1.4 Update the software version
 
@@ -123,6 +113,8 @@ If you want to get the latest MobiusPi and its functional characteristics, conta
 - [Update the IG501 software version](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#id1)
 - [Update the IG902 software version](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#id1)
 
+<a id="enable-the-debugging-mode-for-mobiuspi"> </a>  
+
 #### 1.1.5 Enable the debugging mode for MobiusPi
 
 To run and debug Python code on MobiusPi during development, you need to enable the debugging mode for MobiusPi.
@@ -130,17 +122,23 @@ To run and debug Python code on MobiusPi during development, you need to enable 
 - [Enable the IG501 debugging mode](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#id3)
 - [Enable the IG902 debugging mode](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#id3)
 
+<a id="install-required-software-on-the-pc"> </a>  
+
 ### 1.2 Install required software on the PC
 
-- [1.2.1 Install the Python interpreter](#121-安装python解释器)
-- [1.2.2 Install Visual Studio Code](#122-安装visual-studio-code软件)
-- [1.2.3 Install OpenSSH](#123-安装openssh)
+- [1.2.1 Install the Python interpreter](#install-the-python-interpreter)
+- [1.2.2 Install Visual Studio Code](#install-visual-studio-code)
+- [1.2.3 Install OpenSSH](#install-openssh)
+
+<a id="install-the-python-interpreter"> </a>  
 
 #### 1.2.1 Install the Python interpreter
 
 The PC shall be installed with the Python2.7.X or 3.7.X interpreter (the 3.7.X interpreter is recommended). You can download the install package from [https://www.python.org/downloads/](https://www.python.org/downloads/) and install it to the PC.
 
 ![](./images/2019-11-08-16-03-16.png)
+
+<a id="install-visual-studio-code"> </a>  
 
 #### 1.2.2 Install Visual Studio Code
 
@@ -152,6 +150,8 @@ After VS Code is downloaded and installed, run the software, and its page is as 
 
 ![](images/2020-01-02-10-17-13.png)
 
+<a id="install-openssh"> </a>  
+
 #### 1.2.3 Install OpenSSH
 
 You can enter the `ssh` command in Command Prompt to check whether the PC supports the SSH protocol. If the PC supports the SSH protocol, the following figure is displayed:
@@ -160,13 +160,17 @@ You can enter the `ssh` command in Command Prompt to check whether the PC suppor
 
 If the PC does not support the SSH protocol, download OpenSSH from [https://www.openssh.com](https://www.openssh.com) and install it to the PC.
 
+<a id="prepare-the-vs-code-development-environment"> </a>  
+
 ### 1.3 Prepare the VS Code development environment
 
-- [1.3.1 Install the VS Code extension](#131-安装vs-code扩展插件)
-- [1.3.2 Configure the Python interpreter version](#132-配置python解释器版本)
-- [1.3.3 Configure the project template](#133-配置工程模板)
-  - [1.3.3.1 Apply the InHand standard project template](#1331-使用映翰通标准工程模板)
-  - [1.3.3.2 Custom project template](#1332-自定义工程模板)
+- [1.3.1 Install the VS Code extension](#1install-the-vs-code-extension)
+- [1.3.2 Configure the Python interpreter version](#configure-the-python-interpreter-version)
+- [1.3.3 Configure the project template](#configure-the-project-template)
+  - [1.3.3.1 Apply the InHand standard project template](#apply-the-inhand-standard-project-template)
+  - [1.3.3.2 Custom project template](#custom-project-template)
+
+<a id="install-the-vs-code-extension"> </a>  
 
 #### 1.3.1 Install the VS Code extension
 
@@ -186,6 +190,8 @@ To develop and debug the Python code on MobiusPi, you must install the following
 
 Now, all plug-ins required by MobiusPi have been installed. For more information about VS Code plug-ins, see the [Visual Studio Code official website](https://code.visualstudio.com/).
 
+<a id="configure-the-python-interpreter-version"> </a>  
+
 #### 1.3.2 Configure the Python interpreter version
 
 Press `Ctrl+Shift+P`. On the displayed Command Palette, enter `>Python: select Interpreter`.
@@ -196,7 +202,11 @@ Select a required Python interpreter. In this document, the Python 3.7.X interpr
 
 ![](images/2020-01-02-10-26-30.png)
 
+<a id="configure-the-project-template"> </a>  
+
 #### 1.3.3 Configure the project template
+
+<a id="apply-the-inhand-standard-project-template"> </a>  
 
 ##### 1.3.3.1 Apply the InHand standard project template
 
@@ -246,6 +256,8 @@ Select a required Python interpreter. In this document, the Python 3.7.X interpr
   
   ![](images/2020-01-02-13-14-51.png)
 
+<a id="custom-project-template"> </a>  
+
 ##### 1.3.3.2 Custom project template
 
 - Step 1: Create a project template folder which must contain the following information. You can add other files as needed.
@@ -270,18 +282,22 @@ Select a required Python interpreter. In this document, the Python 3.7.X interpr
 
 - Step 3: In the Command Palette, enter the `>Project:Save Project as Template` command to save the current project file as a template.
 
+<a id="compile-the-first-mobiuspi-app-hello-world"> </a>  
+
 ## 2. Compile the first MobiusPi App: Hello World
 
 This document takes the **HelloWorld** App as an example to describe how to develop MobiusPi Python Apps in VS Code. This App can print a "hello world!" log every 10s in MobiusPi and allows you to import the configuration file and modify the log.
 
-- [2.1 Use a template to create a project](#21-使用模板创建工程)
-- [2.2 Encoding](#22-编码)
-- [2.3 Debugging](#23-调试)
-- [2.4 Build an App release package](#24-构建app发布包)
-- [2.5 Deploy the App on the MobiusPi web page](#25-通过mobiuspi-web页面部署app)
-- [2.6 View the App running status](#26-查看app运行状态)
-- [2.7 Update the App configuration file](#27-为app更新配置文件)
-- [2.8 Annex](#28-附录)
+- [2.1 Use a template to create a project](#use-a-template-to-create-a-project)
+- [2.2 Encoding](#encoding)
+- [2.3 Debugging](#debugging)
+- [2.4 Build an App release package](#build-an-app-release-package)
+- [2.5 Deploy the App on the MobiusPi web page](#deploy-the-app-on-the-mobiuspi-web-page)
+- [2.6 View the App running status](#view-the-app-running-status)
+- [2.7 Update the App configuration file](#update-the-app-configuration-file)
+- [2.8 Annex](#annex)
+
+<a id="use-a-template-to-create-a-project"> </a>  
 
 ### 2.1 Use a template to create a project
 
@@ -301,6 +317,8 @@ This document takes the **HelloWorld** App as an example to describe how to deve
   
   ![](images/2020-01-02-10-42-36.png)
 
+<a id="encoding"> </a>  
+
 ### 2.2 Encoding
 
 The standard project template **helloworld-template** can print a "hello world!" log every 10s in MobiusPi and allows you to import the configuration file and modify the log. To modify the App name, modify the code in `main.py` and `setup.py` by referring to the following figure.<font color=#FF0000> Note: The Python App name cannot contain any space.</font>
@@ -309,10 +327,14 @@ The standard project template **helloworld-template** can print a "hello world!"
 
 ![](images/2020-05-26-09-46-00.png)
 
+<a id="debugging"> </a>  
+
 ### 2.3 Debugging
 
-- [2.3.1 Create an SFTP connection](#231-建立sftp连接)
-- [2.3.2 Debug the code](#232-调试代码)
+- [2.3.1 Create an SFTP connection](#create-an-sftp-connection)
+- [2.3.2 Debug the code](#debug-the-code)
+
+<a id="create-an-sftp-connection"> </a>  
 
 #### 2.3.1 Create an SFTP connection
 
@@ -360,6 +382,8 @@ To debug the code remotely, upload the local code to the remote server (MobiusPi
   
   ![](images/2020-01-02-18-23-49.png)
 
+<a id="debug-the-code"> </a>  
+
 #### 2.3.2 Debug the code
 
 - Step 1: Synchronize the code.
@@ -397,6 +421,8 @@ To debug the code remotely, upload the local code to the remote server (MobiusPi
   
   ![](images/2020-05-26-10-58-49.png)
 
+<a id="build-an-app-release-package"> </a>  
+
 ### 2.4 Build an App release package
 
 After debugging, you can build an App release package to quickly deploy the App to other MobiusPi devices.
@@ -417,12 +443,16 @@ After debugging, you can build an App release package to quickly deploy the App 
   
   ![](images/2020-01-02-18-32-54.png)
 
+<a id="deploy-the-app-on-the-mobiuspi-web-page"> </a>  
+
 ### 2.5 Deploy the App on the MobiusPi web page
 
 Run the `main.py` script. Or, after the App release package is built, the App is automatically generated on the connected MobiusPi, but this App cannot be started. Refer to the following links to deploy the App to MobiusPi:
 
 - [Deploy an App on IG501](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#python-app)
 - [Deploy an App on IG902](https://ingateway-development-docs.readthedocs.io/zh_CN/latest/IG501%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#python-app)
+
+<a id="view-the-app-running-status"> </a>  
 
 ### 2.6 View the App running status
 
@@ -435,6 +465,8 @@ Click **View Logs** to view the App running logs.
 ![](images/2020-02-15-16-56-39.png)
 
 ![](./images/2019-12-05-14-54-03.png)
+
+<a id="update-the-app-configuration-file"> </a>  
 
 ### 2.7 Update the App configuration file
 
@@ -454,11 +486,15 @@ After restart, the HelloWorld App runs with the updated configuration file and p
 
 ![](./images/2019-12-06-15-20-04.png)
 
+<a id="annex"> </a>  
+
 ### 2.8 Annex
 
-- [2.8.1 Install a third-party dependency library for the specified App](#281-为指定app安装第三方依赖库)
-- [2.8.2 Install the third-party dependency library to SDK](#282-安装第三方依赖库至sdk)
-- [2.8.3 Enable automatic code completion](#283-启用代码自动补全)
+- [2.8.1 Install a third-party dependency library for the specified App](#install-a-third-party-dependency-library-for-the-specified-app)
+- [2.8.2 Install the third-party dependency library to SDK](#install-the-third-party-dependency-library-to-sdk)
+- [2.8.3 Enable automatic code completion](#enable-automatic-code-completion)
+
+<a id="install-a-third-party-dependency-library-for-the-specified-app"> </a>  
 
 #### 2.8.1 Install a third-party dependency library for the specified App
 
@@ -499,6 +535,8 @@ To install a third-party dependency library for the specified App, you need to e
   
   ![](images/2020-01-03-11-39-45.png)
 
+<a id="install-the-third-party-dependency-library-to-sdk"> </a>  
+
 #### 2.8.2 Install the third-party dependency library to SDK
 
 To install a third-party dependency library to SDK, you need to enable the debugging mode for MobiusPi and connect to the Internet. The following takes installing the `xlrd` dependency library to SDK as an example to describe how to install a third-party dependency library to SDK.
@@ -528,6 +566,8 @@ To install a third-party dependency library to SDK, you need to enable the debug
   ![](images/2020-05-12-09-52-36.png)
 
 <font color=#FF0000>Note: After the third-party dependency library is installed in this way, if the App release package is imported to another MobiusPi project on which the third-party dependency library required for running this App is not installed to SDK, this App may cannot run.</font>
+
+<a id="enable-automatic-code-completion"> </a>  
 
 #### 2.8.3 Enable automatic code completion
 
