@@ -13,3 +13,4 @@
    PLC Supervisor用户手册.md
    MobiusPi Python QuickStart-CN.md
    MobiusPi Python QuickStart-EN.md
+   API手册.md
