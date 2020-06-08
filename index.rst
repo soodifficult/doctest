@@ -33,6 +33,38 @@ Device Supervisor doc：app.ig.inhandnetworks.com
 
 Docker doc：docker.ig.inhandnetworks.com
 
+.. raw:: html
+
+    <table style="width:100%;">
+      <tr>
+        <td>
+          </div>
+          <div style="display:inline-block;">
+            <h2 style="width:auto;">中文文档</h2>
+          </div>
+          <ul>
+          <li><a href="fw.ig.inhand.com.cn">固件说明文档</a></li>
+          <li><a href="examples/sprite_collect_coins.html">Python开发文档</a></li>
+          <li><a href="examples/asteroid_smasher.html">Device Supervisor说明文档</a></li>
+          <li><a href="examples/platform_tutorial/index.html">Docker说明文档</a></li>
+          </ul>
+        </td>
+        <td>
+          </div>
+          <div style="display:inline-block;">
+            <h2 style="width:auto;">英文文档</h2>
+          </div>
+          <ul>
+          <li><a href="installation_windows.html">firmware doc</a></li>
+          <li><a href="installation_mac.html">Python doc</a></li>
+          <li><a href="installation_linux.html">Linux</a></li>
+          <li><a href="installation_from_source.html">Install From Source</a></li>
+          </ul>
+        </td>
+      </tr>
+
+
+
 .. toctree::
    :maxdepth: 1
    :caption: 快速入门
