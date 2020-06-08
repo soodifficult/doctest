@@ -31,16 +31,16 @@ InGateway文档网站导航
             <h3 style="width:auto;">英文文档</h3>
           </div>
           <ul>
-          <li><a href="http://fw.ig.inhandnetworks.com/zh_CN/latest/">firmware doc</a></li>
-          <li><a href="http://sdk.ig.inhandnetworks.com/zh_CN/latest/">Python doc</a></li>
-          <li><a href="http://app.ig.inhandnetworks.com/zh_CN/latest/">Device Supervisor doc</a></li>
-          <li><a href="http://docker.ig.inhandnetworks.com/zh_CN/latest/">Docker doc</a></li>
+          <li><a href="http://fw.ig.inhandnetworks.com/en/latest/">firmware doc</a></li>
+          <li><a href="http://sdk.ig.inhandnetworks.com/en/latest/">Python doc</a></li>
+          <li><a href="http://app.ig.inhandnetworks.com/en/latest/">Device Supervisor doc</a></li>
+          <li><a href="http://docker.ig.inhandnetworks.com/en/latest/">Docker doc</a></li>
           </ul>
         </td>
       </tr>
     </table>
 
-Device Supervisor App是XXX。
+Device Supervisor App为用户提供了便捷且可靠的数据采集、数据二次处理和数据上云等功能，支持ISO on TCP、ModbusRTU等多种工业协议解析。如果您想快速实现多种工业协议的数据采集并在本地预处理设备数据，数据处理过滤后的能够快速对接自建MQTT云平台。那么Device Supervisor是您理想的选择。
 
 .. toctree::
    :maxdepth: 1
