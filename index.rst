@@ -20,7 +20,7 @@
             <h2 style="width:auto;">中文文档</h2>
           </div>
           <ul>
-          <li><a href="fw.ig.inhand.com.cn">固件说明文档</a></li>
+          <li><a href="http://fw.ig.inhand.com.cn/zh_CN/latest/">固件说明文档</a></li>
           <li><a href="examples/sprite_collect_coins.html">Python开发文档</a></li>
           <li><a href="examples/asteroid_smasher.html">Device Supervisor说明文档</a></li>
           <li><a href="examples/platform_tutorial/index.html">Docker说明文档</a></li>
