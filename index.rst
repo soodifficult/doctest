@@ -16,7 +16,6 @@
     <table style="width:100%;">
       <tr>
         <td>
-          </div>
           <div style="display:inline-block;">
             <h2 style="width:auto;">中文文档</h2>
           </div>
@@ -28,7 +27,6 @@
           </ul>
         </td>
         <td>
-          </div>
           <div style="display:inline-block;">
             <h2 style="width:auto;">英文文档</h2>
           </div>
@@ -40,6 +38,7 @@
           </ul>
         </td>
       </tr>
+    </table>
 
 .. toctree::
    :maxdepth: 1
