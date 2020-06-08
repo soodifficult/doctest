@@ -11,28 +11,6 @@
 网站导航
 ---------------
 
-中文文档
-=============
-
-固件说明文档：fw.ig.inhand.com.cn
-
-Python开发文档：sdk.ig.inhand.com.cn
-
-Device Supervisor说明文档：app.ig.inhand.com.cn
-
-Docker说明文档：docker.ig.inhand.com.cn
-
-英文文档
-=============
-
-firmware doc：fw.ig.inhandnetworks.com
-
-Python doc：sdk.ig.inhandnetworks.com
-
-Device Supervisor doc：app.ig.inhandnetworks.com
-
-Docker doc：docker.ig.inhandnetworks.com
-
 .. raw:: html
 
     <table style="width:100%;">
@@ -57,13 +35,11 @@ Docker doc：docker.ig.inhandnetworks.com
           <ul>
           <li><a href="installation_windows.html">firmware doc</a></li>
           <li><a href="installation_mac.html">Python doc</a></li>
-          <li><a href="installation_linux.html">Linux</a></li>
-          <li><a href="installation_from_source.html">Install From Source</a></li>
+          <li><a href="app.ig.inhandnetworks.com">Device Supervisor doc</a></li>
+          <li><a href="installation_from_source.html">Docker doc</a></li>
           </ul>
         </td>
       </tr>
-
-
 
 .. toctree::
    :maxdepth: 1
