@@ -17,7 +17,7 @@
       <tr>
         <td>
           <div style="display:inline-block;">
-            <h2 style="width:auto;">中文文档</h2>
+            <h3 style="width:auto;">中文文档</h2>
           </div>
           <ul>
           <li><a href="http://fw.ig.inhand.com.cn/zh_CN/latest/">固件说明文档</a></li>
@@ -28,7 +28,7 @@
         </td>
         <td>
           <div style="display:inline-block;">
-            <h2 style="width:auto;">英文文档</h2>
+            <h3 style="width:auto;">英文文档</h2>
           </div>
           <ul>
           <li><a href="installation_windows.html">firmware doc</a></li>
