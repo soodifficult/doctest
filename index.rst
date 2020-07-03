@@ -20,8 +20,8 @@ InGateway文档网站导航
             <h3 style="width:auto;">中文文档</h3>
           </div>
           <ul>
-          <li><a href="http://fw.ig.inhand.com.cn/zh_CN/latest/">固件说明文档</a></li>
-          <li><a href="http://sdk.ig.inhand.com.cn/zh_CN/latest/">Python开发文档</a></li>
+          <li><a href="http://fw.ig.inhand.com.cn/zh_CN/latest/">固件说明文档</a><span style="margin-left:10px; font-size:14px" >（网关用户手册、快速使用手册等文档）</span></li>
+          <li><a href="http://sdk.ig.inhand.com.cn/zh_CN/latest/">Python开发文档</a>（Python二次开发指导手册、快速使用手册等文档）</li>
           <li><a href="http://app.ig.inhand.com.cn/zh_CN/latest/">Device Supervisor说明文档</a></li>
           <li><a href="http://docker.ig.inhand.com.cn/zh_CN/latest/">Docker说明文档</a></li>
           </ul>
