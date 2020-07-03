@@ -31,7 +31,7 @@ InGateway文档网站导航
             <h3 style="width:auto;">英文文档</h3>
           </div>
           <ul>
-          <li><a href="http://fw.ig.inhandnetworks.com/en/latest/">firmware doc</a></li>
+          <li><a href="http://fw.ig.inhandnetworks.com/en/latest/">firmware doc</a></a><span style="margin-left:10px; font-size:14px" >(Gateway user manual, quick user manual and other documents)</span></li>
           <li><a href="http://sdk.ig.inhandnetworks.com/en/latest/">Python doc</a></li>
           <li><a href="http://app.ig.inhandnetworks.com/en/latest/">Device Supervisor doc</a></li>
           <li><a href="http://docker.ig.inhandnetworks.com/en/latest/">Docker doc</a></li>
