@@ -51,3 +51,4 @@ Device Supervisor App为用户提供了便捷且可靠的数据采集、数据�
    MobiusPi Python QuickStart-EN.md
    API手册.md
    modbus-CN.md
+   xx.md
